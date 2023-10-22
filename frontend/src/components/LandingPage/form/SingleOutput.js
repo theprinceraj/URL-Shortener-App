@@ -27,7 +27,7 @@ const SingleOutput = (props) => {
   const [copySuccess, setCopySuccess] = useState(false);
 
   const handleEditBackHalf = () => {
-    const currentBackHalf = window.prompt("Edit Back Half:", props.shortUrl);
+    const currentBackHalf = window.prompt(`Edit the last part of your shortened link: ${props.shortUrl}`, props.shortUrl.split('/').pop());
 
     if (currentBackHalf !== null) {
       // Handle the updated back half, e.g., make an API call to update the link
@@ -97,12 +97,12 @@ const SingleOutput = (props) => {
             {props.shortUrl}
           </Typography>
           {generateButton()}
+          <Button variant="cyanBg" fullWidth onClick={handleEditBackHalf}>
+            Edit
+          </Button>
         </Stack>
 
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-          <Button variant="cyanBg" fullWidth onClick={handleEditBackHalf}>
-            Edit Back Half
-          </Button>
           <QRCodeSVG value={props.shortUrl} size={100} />
         </Stack>
       </Stack>
